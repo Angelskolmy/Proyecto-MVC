@@ -129,6 +129,21 @@ class Controlador
         $Contend2=$Crud_tratamientos->ListarTratamientos(); 
         require_once 'Vista/html/Tratamientos.php';
 
+   } 
+
+   public function ingresoTablaTratamiento($TratAsig, $TrataDesc, $TratInc, $TratFin, $TratOb){ 
+
+        $NuevoTrad= new Tratamientos($TratAsig, $TrataDesc, $TratInc, $TratFin, $TratOb); 
+        $Crud_tratamientos2= new GestorCita; 
+        $Crud_tratamientos2->IngresarTratamientos($NuevoTrad);
+
+   } 
+
+   public function actualizarTablaTratamientos($TratAsig2, $TrataDesc2, $TratInc2, $TratFin2, $TratOb2, $TratClave1){ 
+
+    $AlterTrad= new Tratamientos($TratAsig2, $TrataDesc2, $TratInc2, $TratFin2, $TratOb2, $TratClave1); 
+    $Crud_tratamientos3= new GestorCita; 
+    $Crud_tratamientos3->CambiarTratamientos($TratAsig2, $TrataDesc2, $TratInc2, $TratFin2, $TratOb2, $TratClave1);
    }
 }
  

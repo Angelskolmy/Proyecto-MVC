@@ -261,5 +261,60 @@ class GestorCita
         $Conexion6->cerrar(); 
         return $BOX;
 
+    } 
+
+    public function IngresarTratamientos(Tratamientos $Tratmaientos2){ 
+     
+        $Conexion7= new Conexion; 
+        $Conexion7->abrir();  
+
+        $Creacion= $Tratmaientos2->obtenerFechaCreacionTrat(); 
+        $Descripcion=$Tratmaientos2->obtenerDescripcionTrat();  
+        $Inicio=$Tratmaientos2->obtenerFechaInicioTrat(); 
+        $Fin=$Tratmaientos2-> obtenerFechaFinTrat(); 
+        $Observacion=$Tratmaientos2->obtenerObservacionTrat(); 
+
+        $sql=("INSERT INTO tratamientos (
+        TraFechaAsignado,
+        TraDescripcion,
+        TraFechaInicio,
+        TraFechaFin,
+        TraObservaciones)VALUES 
+        ('$Creacion', 
+        '$Descripcion', 
+        '$Inicio', 
+        '$Fin',
+        '$Observacion')"); 
+
+        $Conexion7->consulta($sql);
+
+        $roows_5=$Conexion7->obtenerFilasAfectadas();  
+
+        $Conexion7->cerrar(); 
+
+        return $roows_5; 
+    } 
+
+    public function CambiarTratamientos(Tratamientos  $Tratamientos3){ 
+
+        $Conexion8= new conexion; 
+        $Conexion8->abrir(); 
+
+        $Idtrat= $Tratamientos3->obtenerClaveTrat();
+        $FechCreacion= $Tratamientos3-> obtenerFechaCreacionTrat(); 
+        $FechDescripcion=$Tratamientos3->obtenerDescripcionTrat();
+        $FechInicio=$Tratamientos3->obtenerFechaInicioTrat();
+        $FechFin=$Tratamientos3->obtenerFechaFinTrat(); 
+        $Tratobser=$Tratamientos3->obtenerObservacionTrat(); 
+
+        $sql=("UPDATE tartamientos SET TraFechaAsignado='$FechCreacion', TraDescripcion='$FechDescripcion', TraFechaInicio='$FechInicio', TraFechaFin='$FechFin', TraObservaciones='$Tratobser'  WHERE  TraNumero='$Idtrat'"); 
+
+        $Conexion8->consulta($sql); 
+
+        $roows_6=$Conexion8->obtenerFilasAfectadas(); 
+
+        $Conexion8->cerrar(); 
+        
+        return $roows_6;
     }
 }

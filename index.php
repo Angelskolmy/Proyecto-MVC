@@ -86,7 +86,6 @@
                 $_GET["actMedTipo"], 
                 $_GET["MedCedclave"] 
             );
-
         } 
 
         elseif($_GET['accion']=="borrarMedico"){ 
@@ -94,8 +93,32 @@
             $controlador->eliminacionTablaMedicos( 
                 $_GET['Claveborrado']
             );
+        } 
+        elseif($_GET['accion']=="insertarTratamiento"){ 
+
+            $controlador->ingresoTablaTratamiento(
+
+                $_GET['TratAsignado'],
+                $_GET['TrataDescripcion'],
+                $_GET['TratInicio'],
+                $_GET['TratFin'],
+                $_GET['TratObservacion']
+            );
         }
-    
-    } else {
+        elseif($_GET['accion']=="actualizetratamiento"){
+
+            $controlador->actualizarTablaTratamientos(
+
+                $_GET['TratAsignado2'], 
+                $_GET['TratDescripcion2'],
+                $_GET['TratInicio2'],
+                $_GET['TratFin2'],
+                $_GET['TratObservacion2'],
+                $_GET['ClaveTratamiento']
+            );
+
+        }
+    } 
+    else {
         $controlador->verPagina('Vista/html/inicio.php');
     }
