@@ -143,7 +143,16 @@ class Controlador
 
     $AlterTrad= new Tratamientos($TratAsig2, $TrataDesc2, $TratInc2, $TratFin2, $TratOb2, $TratClave1); 
     $Crud_tratamientos3= new GestorCita; 
-    $Crud_tratamientos3->CambiarTratamientos($TratAsig2, $TrataDesc2, $TratInc2, $TratFin2, $TratOb2, $TratClave1);
+    $Crud_tratamientos3->CambiarTratamientos($AlterTrad);
+   } 
+
+   public function borrarTablaMedicos($TratClave){ 
+
+    $AlterTrad2= new Tratamientos(null,null,null,null,null,$TratClave); 
+    $Crud_tratamientos4= new GestorCita; 
+    $Crud_tratamientos4->desaparicionTratamiento($AlterTrad2); 
+    $Contend2=$Crud_tratamientos4->ListarTratamientos(); 
+    require_once 'Vista/html/Tratamientos.php';
    }
 }
  

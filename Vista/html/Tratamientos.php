@@ -63,7 +63,7 @@
                                     <td><?php echo"$Malinoa->TraObservaciones"?></td> 
                                     <td><button class="boton-leer-mas" onclick="mostrarModalupdate(this)" 
                                         
-                                        data-idTrat="<?php echo"$Malinoa->TraNumero"?>"
+                                        data-idtrat="<?php echo"$Malinoa->TraNumero"?>"
                                         data-creacion="<?php echo"$Malinoa->TraFechaAsignado"?>"  
                                         data-descripcion="<?php echo"$Malinoa->TraDescripcion"?>" 
                                         data-fechinicio="<?php echo"$Malinoa->TraFechaInicio"?>" 
@@ -71,7 +71,7 @@
                                         data-observar="<?php echo"$Malinoa->TraObservaciones"?>"
 
                                     >UPDATE</button></td> 
-                                    <td><button class="boton-leer-mas"><a id="isdex" href="">DELETE</a></button></td> 
+                                    <td><button class="boton-leer-mas"><a id="isdex" href="index.php?accion=borrarTratamiento&datoDesactivacion=<?php echo"$Malinoa->TraNumero"?>">DELETE</a></button></td> 
                                 </tr> 
                             <?php };?>
                         </table>
@@ -122,7 +122,7 @@
 
                 <!-- Actualizar -->
                 <div id="fmrTratamientos2" title="Actualizar Tratamiento"> 
-                    <form action="index.php?accion=cambioTratamiento" method="get" id="cambioTratamiento"> 
+                    <form action="index.php?accion=actualizetratamiento" method="get" id="cambioTratamiento"> 
                         <table>
                             <tr>
                                 <td>Fecha Creacion</td>

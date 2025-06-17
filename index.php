@@ -117,6 +117,12 @@
                 $_GET['ClaveTratamiento']
             );
 
+        } 
+        elseif($_GET['accion']=="borrarTratamiento"){ 
+            
+            $controlador->borrarTablaMedicos( 
+                $_GET['datoDesactivacion']
+            );
         }
     } 
     else {

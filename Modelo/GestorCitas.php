@@ -254,7 +254,7 @@ class GestorCita
         $Conexion6= new Conexion;  
         $Conexion6-> abrir();   
 
-        $sql="SELECT * FROM tratamientos"; 
+        $sql="SELECT * FROM tratamientos WHERE estado='Activo'"; 
         $Conexion6->consulta($sql); 
 
         $BOX=$Conexion6->obtenerResult();  
@@ -307,7 +307,7 @@ class GestorCita
         $FechFin=$Tratamientos3->obtenerFechaFinTrat(); 
         $Tratobser=$Tratamientos3->obtenerObservacionTrat(); 
 
-        $sql=("UPDATE tartamientos SET TraFechaAsignado='$FechCreacion', TraDescripcion='$FechDescripcion', TraFechaInicio='$FechInicio', TraFechaFin='$FechFin', TraObservaciones='$Tratobser'  WHERE  TraNumero='$Idtrat'"); 
+        $sql=("UPDATE tratamientos SET TraFechaAsignado='$FechCreacion', TraDescripcion='$FechDescripcion', TraFechaInicio='$FechInicio', TraFechaFin='$FechFin', TraObservaciones='$Tratobser'  WHERE  TraNumero='$Idtrat'"); 
 
         $Conexion8->consulta($sql); 
 
@@ -316,5 +316,23 @@ class GestorCita
         $Conexion8->cerrar(); 
         
         return $roows_6;
+    }   
+
+    public function desaparicionTratamiento(Tratamientos $Tratamientos4){ 
+
+        $Conexion9= new Conexion; 
+        $Conexion9->abrir(); 
+
+        $clavedecomando= $Tratamientos4->obtenerClaveTrat(); 
+        $sql=("UPDATE tratamientos SET estado='Desactivado' WHERE TraNumero='$clavedecomando'");
+        $Conexion9->consulta($sql); 
+        $roows_7=$Conexion9->obtenerFilasAfectadas(); 
+        
+        $Conexion9->cerrar(); 
+
+        return $roows_7;
+
     }
+
+
 }

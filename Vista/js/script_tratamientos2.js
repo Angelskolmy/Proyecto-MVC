@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 function mostrarModalupdate(btn){ 
 
-    var idtrat=$(btn).data('idTrat'); 
+    var idtrat=$(btn).data('idtrat'); 
     var Creacion=$(btn).data('creacion'); 
     var Descripcion=$(btn).data('descripcion'); 
     var Fechinicio=$(btn).data('fechinicio'); 
@@ -27,7 +27,8 @@ function mostrarModalupdate(btn){
     $("#fmrTratamientos2  input[name='TratFin2']").val(Fechcierre);  
     $("#fmrTratamientos2  textarea[name='TratObservacion2']").val(observar);
 
-    $("#fmrTratamientos2").dialog('open'); 
+    $("#fmrTratamientos2").dialog('open');  
+
 
 }  
 
@@ -35,7 +36,7 @@ function ActualizarTratamiento(){
 
     datos= $("#cambioTratamiento").serialize();
     linkindex= "index.php?accion=actualizetratamiento&" + datos; 
-    $("Tratar2").load(linkindex, function(){ 
+    $("#Tratar2").load(linkindex,function(){ 
         location.reload();}); 
     $("#fmrTratamientos2").dialog('close');
 }
