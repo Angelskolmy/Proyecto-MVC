@@ -104,7 +104,8 @@ class GestorCita
 
         $sexo = $paciente->obtenerSexo();
 
-        $sql = "INSERT INTO Pacientes VALUES ('$identificacion','$nombres','$apellidos'," . "'$fechaNacimiento','$sexo')";
+        $sql = "INSERT INTO Pacientes (PacIdentificacion, PacNombres, PacApellidos, PacFechaNacimiento, PacSexo) VALUES 
+        ('$identificacion','$nombres','$apellidos'," . "'$fechaNacimiento','$sexo')";
 
         $conexion->consulta($sql);
 
@@ -332,6 +333,30 @@ class GestorCita
 
         return $roows_7;
 
+    } 
+
+    public function listarPacientes(){ 
+          
+        $Conexion10= new Conexion;  
+        $Conexion10->abrir(); 
+
+        $sql=("SELECT * FROM pacientes WHERE Pacestado='Activo'"); 
+        $Conexion10->consulta($sql); 
+        $TablePac=$Conexion10->obtenerResult();  
+        $Conexion10->cerrar(); 
+        return $TablePac;
+    } 
+
+    public function selectPacTratamientos(){ 
+
+        $Conexion11= new Conexion; 
+        $Conexion11->abrir(); 
+
+        $sql=("SELECT * FROM tratamientos"); 
+        $Conexion11->consulta($sql); 
+        $selectpac=$Conexion11->obtenerResult(); 
+        $Conexion11->cerrar(); 
+        return $selectpac;
     }
 
 

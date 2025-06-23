@@ -6,7 +6,8 @@
     require_once 'Modelo/Pacientes.php';
     require_once 'Modelo/Conexion.php'; 
     require_once 'Modelo/ModMedicos.php'; 
-    require_once 'Modelo/ModTratamientos.php';
+    require_once 'Modelo/ModTratamientos.php'; 
+    require_once 'Modelo/ModPacientes.php';
 
     $controlador = new Controlador();
 
@@ -26,6 +27,9 @@
         } 
         if($_GET["accion"]=="Tratamientos"){ 
             $controlador->ListarTablaTratamientos();
+        } 
+        if ($_GET["accion"]=="Pacientes"){ 
+            $controlador->listarTablaPacientes();
         }
         
         elseif ($_GET["accion"] == "guardarCita") {

@@ -20,6 +20,7 @@
             <li><a href="index.php?accion=cancelar">Cancelar Cita</a> </li> 
             <li><a href="index.php?accion=Medicos">Medicos</a> </li> 
             <li><a href="index.php?accion=Tratamientos">Tratamientos</a> </li> 
+            <li><a href="index.php?accion=Pacientes">Pacientes</a> </li> 
         </ul>
         <div id="contenido">
             <h2>Información General</h2>

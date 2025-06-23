@@ -153,6 +153,15 @@ class Controlador
     $Crud_tratamientos4->desaparicionTratamiento($AlterTrad2); 
     $Contend2=$Crud_tratamientos4->ListarTratamientos(); 
     require_once 'Vista/html/Tratamientos.php';
+   } 
+
+   public function listarTablaPacientes(){ 
+    
+    $crud_pacientes1=new GestorCita; 
+    $Backlog= $crud_pacientes1->listarPacientes();  
+    $selector= $crud_pacientes1->selectPacTratamientos();
+    require_once 'Vista/html/Pacientes.php';
+
    }
 }
  
