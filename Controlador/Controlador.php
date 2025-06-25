@@ -102,9 +102,17 @@ class Controlador
 
    public function ingresoTablaMedicos($MedCe, $MedNom, $MedApe, $MedLic, $MedTipo){ 
 
-        $Personal_meedico= new Medicos($MedCe, $MedNom, $MedApe, $MedLic, $MedTipo);   
-        $gestorCita_2= new GestorCita;  
-        $gestorCita_2->InsertarMedicos($Personal_meedico);
+        $Personal_meedico= new Medicos($MedCe, $MedNom, $MedApe, $MedLic, $MedTipo);    
+        $Personal_meedico22= new Medicos($MedCe,null,null,null,null,null,null);
+        $gestorCita_2= new GestorCita;   
+        $Comparador= $gestorCita_2->previainsertarmedicos($Personal_meedico22); 
+        if($Comparador==0){ 
+            $gestorCita_2->InsertarMedicos($Personal_meedico);
+        } 
+        else{ 
+            $GLOBALS['mensaje_errorMedico']="Medico ya registrado"; 
+        }
+        
    }
 
    public function cambioTablaMedicos($MedCe2, $MedNom2, $MedApe2, $MedLic2, $MedTipo2, $MedClave1){ 
@@ -146,7 +154,7 @@ class Controlador
     $Crud_tratamientos3->CambiarTratamientos($AlterTrad);
    } 
 
-   public function borrarTablaMedicos($TratClave){ 
+   public function borrarTablatrataminetos($TratClave){ 
 
     $AlterTrad2= new Tratamientos(null,null,null,null,null,$TratClave); 
     $Crud_tratamientos4= new GestorCita; 
@@ -159,9 +167,41 @@ class Controlador
     
     $crud_pacientes1=new GestorCita; 
     $Backlog= $crud_pacientes1->listarPacientes();  
-    $selector= $crud_pacientes1->selectPacTratamientos();
+    $selector= $crud_pacientes1->selectPacTratamientos(); 
+    $selector2= $crud_pacientes1->selectPacTratamientos();
     require_once 'Vista/html/Pacientes.php';
+   } 
 
+
+   public function PreviolistarrTablaPacientes($cedulaPac, $nomPac, $apePac, $bornPac, $sexoPac, $tratamientoPac){ 
+
+    $AlterPac= new Pacientes2($cedulaPac, $nomPac, $apePac, $bornPac, $sexoPac, $tratamientoPac); 
+    $AlterPac2= new Pacientes2($cedulaPac, null, null, null, null, null); 
+    $crud_pacientes22= new GestorCita; 
+    $Comprobar= $crud_pacientes22->busquedaPreviaingPac($AlterPac2); 
+
+    if ($Comprobar==0){ 
+        $crud_pacientes22->EntrarPacientes($AlterPac);
+    }  
+    else{ 
+        $GLOBALS['mensaje_error']="Paciente ya registrado"; 
+    }
+   } 
+
+   public function actualizarTablaPacientes($cedulaPac2, $nomPac2, $apePac2, $bornPac2, $sexoPac2, $tratamientoPac2, $calvePac1){
+
+    $Modal= new Pacientes2($cedulaPac2, $nomPac2, $apePac2, $bornPac2, $sexoPac2, $tratamientoPac2, $calvePac1); 
+    $Crud_pacientes3= new GestorCita;  
+    $Crud_pacientes3->actulaizacionPacientes($Modal);
+   } 
+
+   public function borrarPacientes($clavePac3){ 
+
+    $Modalpac= new Pacientes2(null, null, null, null, null, null, $clavePac3); 
+    $Crud_pacientes4= new GestorCita; 
+    $Crud_pacientes4->DeletePaciente($Modalpac);  
+    $Backlog= $Crud_pacientes4->listarPacientes();
+    require_once 'Vista/html/Pacientes.php';
    }
 }
  

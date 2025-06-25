@@ -9,14 +9,18 @@
     <link rel="stylesheet" href="Vista/css/tabla_crud_Pacientes.css"> 
     <link href="Vista/jquery/jquery-ui-1.14.1.custom/jquery-ui.min.css" rel="stylesheet" type="text/css" /> 
     <script src="Vista/Jquery/jquery.js"></script>
-    <script src="Vista/jquery/jquery-ui-1.14.1.custom/jquery-ui.js" type="text/javascript"></script> 
+    <script src="Vista/jquery/jquery-ui-1.14.1.custom/jquery-ui.js" type="text/javascript"></script>  
+    <script src="Vista/js/script_pacientes.js"></script> 
+    <script src="Vista/js/script_pacientes2.js"></script>
 </head>
 
 <body>
     <div id="contenedor">
         <div id="encabezado">
             <h1>Sistema de Gestión Odontológica</h1>
-        </div>
+        </div> 
+        <div id="ingpacker"></div> 
+        <div id="inguppacker"></div>
         <ul id="menu">
             <li><a href="index.php">inicio</a> </li>
             <li><a href="index.php?accion=asignar">Asignar</a> </li>
@@ -29,11 +33,12 @@
         <div id="contenido">
             <h2>Pacientes</h2>
             <form action=""> 
-                <input type="button"  class="boton-leer-mas boton-registrar" id="añadirpacientes" onclick="eeeeee" value="Ingreso Pacientes">
-            </form> 
+                <input type="button"  class="boton-leer-mas boton-registrar" id="añadirpacientes" onclick="mostrarPacdialog()" value="Ingreso Pacientes">
+            </form>  
+            <div id="#mensaje_error"></div>
             <table id="Tablapacientes">
                 <tr>
-                    <th>Cedula</th>
+                    <th>CC</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Nacimeinto</th>
@@ -50,8 +55,18 @@
                     <td><?php echo $Startlock->PacFechaNacimiento;?></td>
                     <td><?php echo $Startlock->PacSexo;?></td>
                     <td><?php echo $Startlock->Pactratamiento;?></td>
-                    <td><button class="boton-leer-mas" onclick="pñpp">UPDATE</button></td>
-                    <td><button class="boton-leer-mas"><a id="isdex" href="">DELETE</a></button></td>
+                    <td><button 
+                        class="boton-leer-mas" 
+                        onclick="mostraractualizacionpac(this)" 
+                        data-cedulapaciente="<?php echo $Startlock->PacIdentificacion;?>" 
+                        data-clavepaciente="<?php echo $Startlock->PacIdentificacion;?>"
+                        data-nombrepaciente="<?php echo $Startlock->PacNombres;?>" 
+                        data-apellidopaciente="<?php echo $Startlock->PacApellidos;?>" 
+                        data-fechabornpaciente="<?php echo $Startlock->PacFechaNacimiento;?>" 
+                        data-sexopaceinte="<?php echo $Startlock->PacSexo;?>" 
+                        data-tratamientopaciente="<?php echo $Startlock->Pactratamiento;?>"
+                    >UPDATE</button></td>
+                    <td><button class="boton-leer-mas"><a id="isdex" href="index.php?accion=Delpacstar&Delpacclave=<?php echo $Startlock->PacIdentificacion;?>">DELETE</a></button></td>
                 </tr>  
                 <?php }?>
             </table> 
@@ -85,17 +100,72 @@
                         <tr>
                             <td>Sexo</td> 
                             <td>
-                                <select name="sexPac" id="sexPac"> 
-                                    <option value=""></option>
+                                <select name="sexPac" id="sexPac">  
+                                    <option value="">---seleccione---</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
                                 </select>
                             </td>
                         </tr> 
                         <tr>
                             <td>Tratamientos</td> 
                             <td>
-                                <select name="trataamientoPac" id="trataamientoPac"> 
+                                <select name="tratamientoPac" id="tratamientoPac">  
+                                    <option value="">---seleccione---</option>
                                     <?php while($Elector= $selector->fetch_object()){?>
-                                    <option value="<?php $Elector->TraNumero?>"><?php echo $Elector->TraDescripcion;?></option> 
+                                    <option value="<?php echo $Elector->TraNumero;?>"><?php echo $Elector->TraDescripcion;?></option> 
+                                    <?php }?>
+                                </select>
+                            </td>
+                        </tr> 
+                    </table>
+                </form>
+            </div> 
+            <div id="fmrpacientes3" title="Actualizar paciente"> 
+                <form action="" id="actuPac" method="get"> 
+                    <table> 
+                        <tr> 
+                            <td>Cedula</td> 
+                            <td>
+                                <input type="text" name="idPac2" id="idPac2"> 
+                                <input type="hidden" name="clavePac" id="clavePac">
+                            </td>
+                        </tr> 
+                        <tr> 
+                            <td>Nombre</td> 
+                            <td>
+                                <input type="text" name="nomPac2" id="nomPac2">
+                            </td>
+                        </tr>
+                        <tr> 
+                            <td>Apellido</td> 
+                            <td>
+                                <input type="text" name="apePac2" id="apePac2">
+                            </td>
+                        </tr>
+                        <tr> 
+                            <td>Fecha de nacimiento</td> 
+                            <td>
+                                <input type="date" name="bornPac2" id="bornPac2">
+                            </td>
+                        </tr> 
+                        <tr> 
+                            <td>Sexo</td>  
+                            <td>
+                                <select name="sexPac2" id="sexPac2"> 
+                                    <option value="">---seleccione---</option> 
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
+                            </td>
+                        </tr> 
+                        <tr> 
+                            <td>Tratamientos</td>  
+                            <td>
+                                <select name="tratPac2" id="tratPac2"> 
+                                    <option value="">---seleccione---</option> 
+                                    <?php while($Pekaboo=$selector2->fetch_object()){?> 
+                                        <option value="<?php echo $Pekaboo->TraNumero;?>"><?php echo $Pekaboo->TraDescripcion;?></option> 
                                     <?php }?>
                                 </select>
                             </td>

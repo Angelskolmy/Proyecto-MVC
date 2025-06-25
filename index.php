@@ -124,8 +124,38 @@
         } 
         elseif($_GET['accion']=="borrarTratamiento"){ 
             
-            $controlador->borrarTablaMedicos( 
+            $controlador->borrarTablatrataminetos( 
                 $_GET['datoDesactivacion']
+            );
+        } 
+        elseif($_GET['accion']=="ingresarPacientes22"){ 
+
+            $controlador->PreviolistarrTablaPacientes( 
+
+                $_GET['idPac'],
+                $_GET['nombrePac'],
+                $_GET['apellidoPac'],
+                $_GET['bornPac'],
+                $_GET['sexPac'],
+                $_GET['tratamientoPac']
+            );
+        } 
+        elseif($_GET['accion']=="uptacker"){ 
+
+            $controlador->actualizarTablaPacientes( 
+                $_GET['idPac2'], 
+                $_GET['nomPac2'],
+                $_GET['apePac2'],
+                $_GET['bornPac2'],
+                $_GET['sexPac2'],
+                $_GET['tratPac2'],
+                $_GET['clavePac']
+            );
+        } 
+        elseif($_GET['accion']=="Delpacstar"){ 
+
+            $controlador->borrarPacientes(
+                $_GET['Delpacclave']
             );
         }
     } 

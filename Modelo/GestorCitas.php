@@ -180,12 +180,26 @@ class GestorCita
 
         $Conexion2= new Conexion(); 
         $Conexion2->abrir(); 
-        $sql="SELECT * FROM  medicos ";  
+        $sql="SELECT * FROM  medicos WHERE estado='Activo'";  
         $Conexion2->consulta($sql);
         $listado=$Conexion2->obtenerResult(); 
         $Conexion2->cerrar();
         return $listado;
-    } 
+    }  
+
+    public function previainsertarmedicos(Medicos $Medicos11){ 
+
+        $Conexion17= new Conexion; 
+        $Conexion17->abrir();  
+
+        $Cedulamedico= $Medicos11->obtenerCedulaMedico(); 
+        $sql=("SELECT MedIdentificacion FROM medicos WHERE MedIdentificacion='$Cedulamedico'"); 
+        $Conexion17->consulta($sql); 
+        $roows_13= $Conexion17->obtenerFilasAfectadas(); 
+
+        $Conexion17->cerrar(); 
+        return $roows_13;
+    }
 
     public function InsertarMedicos(Medicos $Medicos){ 
         $Conexion3= new Conexion(); 
@@ -238,7 +252,7 @@ class GestorCita
 
         $ClaveMed_3= $Medicos3->obtenerClave(); 
 
-        $sql="DELETE FROM medicos WHERE MedIdentificacion='$ClaveMed_3'"; 
+        $sql="UPDATE medicos SET estado='Desactivado' WHERE MedIdentificacion='$ClaveMed_3'"; 
 
         $Conexion5-> consulta($sql);
 
@@ -357,6 +371,100 @@ class GestorCita
         $selectpac=$Conexion11->obtenerResult(); 
         $Conexion11->cerrar(); 
         return $selectpac;
+    } 
+
+    public function EntrarPacientes(Pacientes2 $Pacientes2){ 
+
+        $Conexion12= new Conexion; 
+        $Conexion12->abrir(); 
+
+        $Cedula=$Pacientes2->obtenerCedulaPaciente(); 
+        $Nombres=$Pacientes2->obtenerNombresPaciente(); 
+        $apellidos=$Pacientes2->obtenerApellidosPaciente();
+        $fechanacimento=$Pacientes2->obtenerNacimientoPaciente(); 
+        $sexo=$Pacientes2->obtenerSexoPaciente(); 
+        $tratamiento=$Pacientes2->obtenerTratamientoPaciente(); 
+
+        $sql=("INSERT INTO pacientes (
+        PacIdentificacion,
+        PacNombres,
+        PacApellidos,
+        PacFechaNacimiento,
+        PacSexo,
+        Pactratamiento)VALUES  
+        ('$Cedula',
+        '$Nombres',
+        '$apellidos', 
+        '$fechanacimento', 
+        '$sexo', 
+        '$tratamiento')");  
+
+        $Conexion12->consulta($sql);  
+
+        $roows_8= $Conexion12->obtenerFilasAfectadas(); 
+        $Conexion12->cerrar();  
+
+        return $roows_8;
+    } 
+
+    public function busquedaPreviaingPac(Pacientes2 $Pacientes2){  
+
+        $Conexion13= new Conexion; 
+        $Conexion13->abrir(); 
+
+        $Identificadorclave= $Pacientes2->obtenerCedulaPaciente(); 
+        $sql=("SELECT PacIdentificacion FROM pacientes WHERE PacIdentificacion='$Identificadorclave'");   
+        $Conexion13->consulta($sql);  
+        $roows_9= $Conexion13->obtenerFilasAfectadas();  
+        $Conexion13->cerrar(); 
+        return $roows_9;
+    } 
+
+    public function actulaizacionPacientes (Pacientes2 $Pacientes3){ 
+
+        $Conexion14= new Conexion; 
+        $Conexion14->abrir();  
+
+        $cedula= $Pacientes3->obtenerCedulaPaciente(); 
+        $nombre= $Pacientes3->obtenerNombresPaciente(); 
+        $apellido= $Pacientes3->obtenerApellidosPaciente();
+        $bornfech= $Pacientes3->obtenerNacimientoPaciente(); 
+        $sexo= $Pacientes3->obtenerSexoPaciente(); 
+        $tratamiento= $Pacientes3->obtenerTratamientoPaciente();   
+        $clave= $Pacientes3->obtenerClavePaciente();
+         
+        $sql=("UPDATE pacientes SET 
+        PacIdentificacion='$cedula', 
+        PacNombres='$nombre', 
+        PacApellidos='$apellido', 
+        PacFechaNacimiento='$bornfech', 
+        PacSexo='$sexo', 
+        Pactratamiento='$tratamiento' 
+        WHERE PacIdentificacion='$clave' "); 
+
+        $Conexion14->consulta($sql); 
+
+        $roows_10= $Conexion14->obtenerFilasAfectadas();  
+
+        $Conexion14->cerrar();
+
+        return $roows_10;
+    }
+
+
+    public function  DeletePaciente(Pacientes2 $Pacientes4){ 
+
+        $Conexion16= new conexion; 
+        $Conexion16->abrir(); 
+
+        $Clave2= $Pacientes4->obtenerClavePaciente(); 
+        $sql=("UPDATE pacientes SET Pacestado='Inactivo' WHERE PacIdentificacion='$Clave2'");  
+        $Conexion16->consulta($sql);  
+        $roows_12= $Conexion16->obtenerFilasAfectadas(); 
+        $Conexion16->cerrar();  
+
+        return $roows_12;
+
     }
 
 

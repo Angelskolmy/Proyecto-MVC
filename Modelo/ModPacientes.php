@@ -7,16 +7,18 @@
         private $PacApellidos;
         private $PacNacimiento; 
         private $PacSexo;
-        private $PacTratamiento; 
+        private $PacTratamiento;  
+        private $clavePac;
 
-        public function __construct($PacCedula=null, $PacNombres=null, $PacApellidos=null, $PacNacimiento=null, $PacSexo=null, $PacTratamiento=null)
+        public function __construct($PacCedula=null, $PacNombres=null, $PacApellidos=null, $PacNacimiento=null, $PacSexo=null, $PacTratamiento=null,$clavePac=null)
         {
             $this->PacCedula=$PacCedula;
             $this->PacNombres=$PacNombres;
             $this->PacApellidos=$PacApellidos;
             $this->PacNacimiento=$PacNacimiento;
             $this->PacSexo=$PacSexo;
-            $this->PacTratamiento=$PacTratamiento;
+            $this->PacTratamiento=$PacTratamiento; 
+            $this->clavePac=$clavePac;
         } 
 
         public function obtenerCedulaPaciente(){ 
@@ -43,6 +45,9 @@
             return $this->PacTratamiento;
         }
 
+        public function obtenerClavePaciente(){ 
+            return  $this->clavePac;
+        }
 
     }
 
