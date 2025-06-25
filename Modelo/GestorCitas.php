@@ -1,6 +1,20 @@
 <?php
 class GestorCita
-{
+{ 
+    public function loger(Users $Users){ 
+        $Conexion19= new Conexion; 
+        $Conexion19->abrir();  
+
+        $Correo= $Users->obtenerCorreoUsuario(); 
+        $Contraseña= $Users->obtenerContraseñaUsuario();
+
+        $sql=("SELECT * FROM users WHERE email='$Correo' AND UserPasword='$Contraseña'");  
+        $Conexion19->consulta($sql);
+        $ComparadorLoger=$Conexion19->obtenerResult(); 
+        $Conexion19->cerrar(); 
+        return $ComparadorLoger;
+    } 
+
     public function agregarCita(Cita $cita)
     {
         $conexion = new Conexion();
@@ -465,6 +479,19 @@ class GestorCita
 
         return $roows_12;
 
+    } 
+
+    public function  RecopilacionCitas(){
+
+        $Conexion18= new Conexion; 
+        $Conexion18->abrir(); 
+
+        $sql=("SELECT * FROM citas"); 
+
+        $Conexion18->consulta($sql); 
+        $BlackBox= $Conexion18->obtenerResult();  
+        $Conexion18->cerrar(); 
+        return $BlackBox;
     }
 
 

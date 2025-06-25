@@ -7,11 +7,23 @@
     require_once 'Modelo/Conexion.php'; 
     require_once 'Modelo/ModMedicos.php'; 
     require_once 'Modelo/ModTratamientos.php'; 
-    require_once 'Modelo/ModPacientes.php';
+    require_once 'Modelo/ModPacientes.php'; 
+    require_once 'Modelo/ModUsuario.php';
 
     $controlador = new Controlador();
 
-    if (isset($_GET["accion"])) {
+    if (isset($_GET["accion"])) {  
+
+        if($_GET["accion"] == "entrarsoft"){ 
+            $controlador->loginMaster( 
+                $_POST['usemail'],
+                $_POST['usepassword']
+            );
+        }
+
+        if($_GET["accion"] == "inicio"){ 
+            $controlador->verPagina('Vista/html/inicio.php');
+        }
 
         if ($_GET["accion"] == "asignar") {
             $controlador->cargarAsignar();
@@ -157,8 +169,9 @@
             $controlador->borrarPacientes(
                 $_GET['Delpacclave']
             );
-        }
+        } 
+        
     } 
     else {
-        $controlador->verPagina('Vista/html/inicio.php');
+        $controlador->verPagina('Vista/html/Login.php');
     }

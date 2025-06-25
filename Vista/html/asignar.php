@@ -18,7 +18,7 @@
             <h1>Sistema de Gestión Odontológica</h1>
         </div>
         <ul id="menu">
-            <li><a href="index.php">inicio</a> </li>
+            <li><a href="index.php?accion=inicio">inicio</a> </li>
             <li class="activa"><a href="index.php?accion=asignar">Asignar</a> </li>
             <li><a href="index.php?accion=consultar">Consultar Cita</a> </li>
             <li><a href="index.php?accion=cancelar">Cancelar Cita</a> </li> 
@@ -28,8 +28,7 @@
         </ul>
         <div id="contenido">
             <h2>Asignar cita</h2>
-            <p>Contenido de la página</p>
-
+            <br>
             <form id="frmasignar" action="index.php?accion=guardarCita" method="post">
                 <table>
                     <tr>
@@ -111,9 +110,9 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="submit" name="asignarEnviar" value="Enviar" id="asignarEnviar">
-
-                        </td>
+                            <input type="submit" name="asignarEnviar" value="Enviar" id="asignarEnviar"> 
+                            <button><a href="index.php?accion=eselx">Descargar Citas</a></button>
+                        </td> 
                     </tr>
                 </table>
             </form>

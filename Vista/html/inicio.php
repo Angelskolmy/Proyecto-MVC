@@ -12,16 +12,33 @@
     <div id="contenedor">
         <div id="encabezado">
             <h1>Sistema de Gestión Odontológica</h1>
-        </div>
+        </div> 
+        <?php 
+            if($_SESSION['RolDelUsuario']=="Admin"){?>
         <ul id="menu">
-            <li><a href="index.php">inicio</a> </li>
+            <li><a href="index.php?accion=inicio">inicio</a> </li>
             <li><a href="index.php?accion=asignar">Asignar</a> </li>
             <li><a href="index.php?accion=consultar">Consultar Cita</a> </li>
             <li><a href="index.php?accion=cancelar">Cancelar Cita</a> </li> 
             <li><a href="index.php?accion=Medicos">Medicos</a> </li> 
             <li><a href="index.php?accion=Tratamientos">Tratamientos</a> </li> 
-            <li><a href="index.php?accion=Pacientes">Pacientes</a> </li> 
-        </ul>
+            <li><a href="index.php?accion=Pacientes">Pacientes</a> </li>  
+        </ul> 
+        <?php }?> 
+
+        <?php 
+            if($_SESSION['RolDelUsuario']=="Medico"){ 
+        ?>  
+        <ul id="menu">
+            <li><a href="index.php?accion=inicio">inicio</a> </li>
+            <li><a href="index.php?accion=asignar">Asignar</a> </li>
+            <li><a href="index.php?accion=consultar">Consultar Cita</a> </li>
+            <li><a href="index.php?accion=cancelar">Cancelar Cita</a> </li> 
+            <li><a href="index.php?accion=Medicos">Medicos</a> </li> 
+            <li><a href="index.php?accion=Tratamientos">Tratamientos</a> </li> 
+            <li><a href="index.php?accion=Pacientes">Pacientes</a> </li>  
+        </ul> 
+        <?php }?>
         <div id="contenido">
             <h2>Información General</h2>
             <p>El Sistema de Gestión Odontológica permite administrar la información de los
@@ -33,6 +50,9 @@
                 <li>Asignar cita</li>
                 <li>Consultar cita</li>
                 <li>Cancelar cita</li>
+                <li>Medicos</li>
+                <li>Pacientes</li>
+                <li>Tratamientos</li>
             </ul>
             </p>
         </div>

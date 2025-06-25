@@ -22,7 +22,7 @@
         <div id="ingpacker"></div> 
         <div id="inguppacker"></div>
         <ul id="menu">
-            <li><a href="index.php">inicio</a> </li>
+            <li><a href="index.php?accion=inicio">inicio</a> </li>
             <li><a href="index.php?accion=asignar">Asignar</a> </li>
             <li><a href="index.php?accion=consultar">Consultar Cita</a> </li>
             <li><a href="index.php?accion=cancelar">Cancelar Cita</a> </li> 
