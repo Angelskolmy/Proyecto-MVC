@@ -479,20 +479,51 @@ class GestorCita
 
         return $roows_12;
 
+    }  
+
+    public function ListarCitasporMedicos(){ 
+        
+        $Conexion20= new Conexion; 
+        $Conexion20->abrir(); 
+        
+        $sql=("SELECT * FROM citas WHERE CitMedico='$_SESSION[IdDelUsuario]'"); 
+        $Conexion20->consulta($sql);
+        $FortBox= $Conexion20->obtenerResult(); 
+        $Conexion20->cerrar(); 
+
+        return $FortBox;
     } 
 
-    public function  RecopilacionCitas(){
+    public function ListarCitaporCitas(){ 
 
-        $Conexion18= new Conexion; 
-        $Conexion18->abrir(); 
+        $Conexion21= new Conexion; 
+        $Conexion21->abrir(); 
 
-        $sql=("SELECT * FROM citas"); 
+        $sql=("SELECT * FROM citas WHERE CitPaciente='$_SESSION[IdDelUsuario]'");
+        $Conexion21->consulta($sql); 
+        $Fortres= $Conexion21->obtenerResult(); 
+        $Conexion21->cerrar(); 
 
-        $Conexion18->consulta($sql); 
-        $BlackBox= $Conexion18->obtenerResult();  
-        $Conexion18->cerrar(); 
-        return $BlackBox;
+        return $Fortres; 
+    } 
+
+    public function ListratratamientoporPaciente(){ 
+
+        $Conexion22= new Conexion; 
+        $Conexion22->abrir(); 
+
+        $sql=("SELECT tratamientos.*, pacientes.PacNombres FROM tratamientos JOIN pacientes ON tratamientos.TraNumero = pacientes.Pactratamiento WHERE PacIdentificacion='$_SESSION[IdDelUsuario]'"); 
+
+        $Conexion22->consulta($sql); 
+
+        $DragonStone= $Conexion22->obtenerResult(); 
+
+        $Conexion22->cerrar(); 
+
+        return $DragonStone;
     }
+
+    
 
 
 }

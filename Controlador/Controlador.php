@@ -224,7 +224,8 @@ class Controlador
                     
                     $_SESSION['CorreoDelUsuario']=$Llave->email;
                     $_SESSION['ContraseñaDelUsuario']=$Llave->UserPasword; 
-                    $_SESSION['RolDelUsuario']=$Llave->Rol; 
+                    $_SESSION['RolDelUsuario']=$Llave->Rol;  
+                    $_SESSION['IdDelUsuario']=$Llave->idUsuario;
 
                     require_once 'Vista/html/inicio.php'; 
                     exit;
@@ -234,5 +235,38 @@ class Controlador
             header ("Location: index.php");
             exit;
 
+    } 
+
+    public function listadoTablaCitasXMed(){ 
+
+        $Mobius= new GestorCita; 
+        $Recapitulacion=$Mobius->ListarCitasporMedicos(); 
+        require_once 'Vista/html/CronogramaMedico.php';
+    } 
+
+    public function listadoTablaCitasporPaciente(){ 
+
+        $Mobius2= new GestorCita; 
+        $RecapPac= $Mobius2->ListarCitaporCitas(); 
+        require_once 'Vista/html/citaPaciente.php';
+    } 
+
+    public function ListadoTablaTratamientosporPacinte(){ 
+         
+        $Mobius3= new GestorCita; 
+        $ActarPac=$Mobius3->ListratratamientoporPaciente();  
+        require_once 'Vista/html/Procedimientos.php';
+
+    }  
+
+    public function cerrarsesion(){
+
+        session_start(); 
+        session_unset(); 
+        session_destroy(); 
+
+        header("Location: index.php");
     }
+
+    
 }

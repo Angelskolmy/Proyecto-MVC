@@ -1,0 +1,28 @@
+.user-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 20;
+}
+
+.user_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;      /* Hace la imagen circular */
+    border: 2px solid #007bff;
+    margin-right: 12px;
+    background: #fff;
+    object-fit: cover;
+}
+
+.user {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px #eee;
+}

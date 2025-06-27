@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión Odontológica</title>
     <link rel="stylesheet" type="text/css" href="Vista/css/estilo.css"> 
+    <link rel="stylesheet" href="Vista/css/tabla_tratamientosPorpaciente.css"> 
     <link rel="stylesheet" href="Vista/css/boton_logo.css"> 
     <link rel="stylesheet" href="Vista/css/usernom.css">
-    <script src="Vista/jquery/jquery.js"></script>
-    <script src="Vista/jquery/jquery-ui-1.14.1.custom/jquery-ui.js" type="text/javascript"></script>
-    <script src="Vista/js/script.js"></script>
 </head>
 
 <body> 
@@ -22,7 +20,7 @@
     <div id="contenedor">
         <div id="encabezado">
             <h1>Sistema de Gestión Odontológica</h1>
-        </div>
+        </div> 
         <?php 
             if($_SESSION['RolDelUsuario']=="Admin"){?>
         <ul id="menu">
@@ -43,7 +41,7 @@
             <li><a href="index.php?accion=inicio">inicio</a> </li>
             <li><a href="index.php?accion=Tratamientos">Tratamientos</a> </li> 
             <li><a href="index.php?accion=Pacientes">Pacientes</a> </li>   
-            <li><a href="">Cronograma</a></li> 
+            <li><a href="index.php?accion=CronoMed">Cronograma</a></li> 
         </ul> 
         <?php }?> 
         <?php 
@@ -54,29 +52,34 @@
             <li><a href="index.php?accion=asignar">Asignar</a> </li>
             <li><a href="index.php?accion=cancelar">Cancelar Cita</a> </li> 
             <li><a href="index.php?accion=CitaPac2">Citas</a></li> 
-            <li><a href="">Procedimeintos</a></li>  
+            <li><a href="index.php?accion=Procedimiento">Procedimeintos</a></li>  
         </ul> 
         <?php }?> 
         <div id="contenido">
-            <h2>Cancelar citas</h2>
-            <form action="" method="post" id="frmconsultar">
-                <table>
-                    <tr>
-                        <td>Documento del Paciente</td>
-                        <td><input type="text" name="cancelarDocumento" required
-                                id="cancelarDocumento"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input type="button" value="Consultar"
-                                onclick="cancelarCita()"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div id="paciente3"></div>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+            <h2>Tratamientos del Paciente</h2> 
+            <table id="Listadores">
+                <tr>
+                    <th>Id</th>
+                    <th>Asignacion</th>
+                    <th>Descripcion</th> 
+                    <th>Paciente</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Observaciones</th>
+                </tr> 
+                <?php while($Stormend=$ActarPac->fetch_object()){?>
+                <tr>
+                    <td><?php echo $Stormend->TraNumero;?></td> 
+                    <td><?php echo $Stormend->TraFechaAsignado;?></td>
+                    <td><?php echo $Stormend->TraDescripcion;?></td>
+                    <td><?php echo $Stormend->PacNombres;?></td>
+                    <td><?php echo $Stormend->TraFechaInicio;?></td>
+                    <td><?php echo $Stormend->TraFechaFin;?></td>
+                    <td><?php echo $Stormend->TraObservaciones;?></td>
+                </tr> 
+                <?php }?>
+            </table>
+            
         </div>
     </div>
 </body>

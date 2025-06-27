@@ -1,0 +1,23 @@
+.rupert {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.rupert2 {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.rupert:hover {
+    background-color: #0056b3;
+} 
+

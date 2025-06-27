@@ -1,0 +1,35 @@
+#ultimacitas {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden; 
+}
+
+#ultimacitas th {
+  background-color: #004b5e;
+  color: rgb(248, 248, 248);
+  padding: 9.5px;
+  border-right: 2px solid #397a73; 
+}
+
+#ultimacitas th:last-child {
+  border-right: none;
+}
+
+#ultimacitas td {
+  padding: 7px;
+  border-bottom: 2px solid #e0e0e0;
+  color: #000000;
+}
+
+#ultimacitas tr:nth-child(even) {
+  background-color: #acacac;
+}
+
+#ultimacitas tr:hover {
+  background-color: #e3f2f9;
+} 

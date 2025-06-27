@@ -42,7 +42,16 @@
         } 
         if ($_GET["accion"]=="Pacientes"){ 
             $controlador->listarTablaPacientes();
-        }
+        } 
+        if($_GET["accion"]=="CronoMed"){ 
+            $controlador->listadoTablaCitasXMed();
+        } 
+        if($_GET["accion"]=="CitaPac2"){ 
+            $controlador->listadoTablaCitasporPaciente();
+        } 
+        if($_GET["accion"]=="Procedimiento"){ 
+            $controlador->ListadoTablaTratamientosporPacinte();
+        } 
         
         elseif ($_GET["accion"] == "guardarCita") {
 
@@ -169,7 +178,11 @@
             $controlador->borrarPacientes(
                 $_GET['Delpacclave']
             );
-        } 
+        }  
+        elseif($_GET['accion']=="logouterwild"){ 
+
+            $controlador->cerrarsesion();
+        }
         
     } 
     else {
